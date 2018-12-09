@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Assignment2</string>
+    <string name="welcome">Welcome To Balloon Popper</string>
+    <string name="swipeRight">Swipe right to play</string>
+    <string name="swipeLeft">Swipe left to view high scores</string>
+    <string name="balloons">Balloons</string>
+
+    <string name="score">Score</string>
+    <string name="start">Start Game</string>
+</resources>
