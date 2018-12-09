@@ -61,7 +61,6 @@ public class GameActivity extends AppCompatActivity {
                     Log.e("Height: ", y + "");
                     balloonButton.setX(x);
                     balloonButton.setY(y);
-                    //dsjlfhdsahfkj
                     if(score <= 10) {
                         score++;
                     }
