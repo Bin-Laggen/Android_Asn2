@@ -27,31 +27,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="200sp"
-            android:layout_height="200sp"
-            android:layout_marginBottom="32dp"
-            android:contentDescription="@string/balloons"
-            app:srcCompat="@drawable/balloons"/>
-
-        <TextView
-            android:id="@+id/swipeRightText"
+        <Button
+            android:id="@+id/refreshButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:text="@string/swipeRight"
-            android:textStyle="bold|italic"
-            android:textSize="20sp"/>
+            android:text="@string/refresh" />
 
-        <TextView
-            android:id="@+id/swipeLeftText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:text="@string/swipeLeft"
-            android:textStyle="bold|italic"
-            android:textSize="20sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/userList"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/scoreList"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="24sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -34,6 +34,7 @@ public class GameActivity extends AppCompatActivity {
     private RelativeLayout rl;
     private boolean play;
     private DBController db;
+    private FileManager fm;
     private GameResult gameResult;
     private String userName;
 
@@ -48,6 +49,7 @@ public class GameActivity extends AppCompatActivity {
         rl = findViewById(R.id.relativeLayout);
 
         db = DBController.getInstance();
+        fm = FileManager.getInstance();
         rnd = new Random();
 
         scoreText = findViewById(R.id.scoreText);
@@ -77,29 +79,59 @@ public class GameActivity extends AppCompatActivity {
                     else if(score > 10 && score <= 20)
                     {
                         score += 2;
-                        delay *= 0.8;
+                        delay *= 0.9;
                     }
                     else if(score > 20 && score <= 30)
                     {
                         score += 3;
-                        delay *= 0.7;
+                        delay *= 0.8;
                     }
-                    else if(score > 30 && score <= 40)
+                    else if(score > 30 && score <= 50)
                     {
                         score += 4;
+                        delay *= 0.75;
+                    }
+                    else if(score > 50 && score <= 70)
+                    {
+                        score += 5;
+                        delay *= 0.7;
+                    }
+                    else if(score > 70 && score <= 100)
+                    {
+                        score += 6;
+                        delay *= 0.67;
+                    }
+                    else if(score > 100 && score <= 130)
+                    {
+                        score += 7;
+                        delay *= 0.63;
+                    }
+                    else if(score > 130 && score <= 170)
+                    {
+                        score += 8;
                         delay *= 0.6;
+                    }
+                    else if(score > 170 && score <= 220)
+                    {
+                        score += 9;
+                        delay *= 0.58;
+                    }
+                    else if(score > 220 && score <= 300)
+                    {
+                        score += 10;
+                        delay *= 0.56;
                     }
                     else
                     {
-                        score += 5;
-                        delay *= 0.5;
+                        score += 11;
+                        delay *= 0.55;
                     }
                     scoreText.setText(getString(R.string.score) + ": " + score);
                     timerHandler.postDelayed(this, delay);
                 }
                 else
                 {
-                    gameResult = new GameResult(userName, Calendar.getInstance().getTime(), score);
+                    gameResult = new GameResult(userName, score);
                     timerHandler.removeCallbacks(timerRunnable);
                     showLossPopup();
                 }
@@ -133,6 +165,8 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         db.writeScoreToDB(gameResult);
+                        db.getScoresFromDB();
+                        //fm.writeToFile(gameResult);
                         finish();
                     }
                 });
@@ -141,6 +175,8 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         db.writeScoreToDB(gameResult);
+                        db.getScoresFromDB();
+                        //fm.writeToFile(gameResult);
                         startButton.setVisibility(View.VISIBLE);
                         startButton.setActivated(true);
                         ad.cancel(); //hide the alert dialog

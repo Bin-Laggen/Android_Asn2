@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "954693258453-e2c1bi865312vv3bem9j0otl3m8e7qa3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.domis.assignment2",
+            "certificate_hash": "65f436d33bb628c007f3626f03fc900c143e9de6"
+          }
+        },
+        {
           "client_id": "954693258453-0t17dlvvl8l2tp09lcu3u4oapqla6dk1.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954693258453-0t17dlvvl8l2tp09lcu3u4oapqla6dk1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

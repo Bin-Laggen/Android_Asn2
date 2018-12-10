@@ -16,11 +16,14 @@ public class MainActivity extends AppCompatActivity {
     private Button leftButton;
     private EditText userNameInput;
     private Drawable inputBG;
+    //private DBController db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //db = DBController.getInstance();
 
         rightButton = findViewById(R.id.rightButton);
         leftButton = findViewById(R.id.leftButton);
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String userName = userNameInput.getText().toString();
                 Log.e("User Name: ", userName);
-                if(userName != null)
+                if(!userName.isEmpty())
                 {
                     userNameInput.setBackground(inputBG);
                     Intent intent = new Intent(MainActivity.this, GameActivity.class);
