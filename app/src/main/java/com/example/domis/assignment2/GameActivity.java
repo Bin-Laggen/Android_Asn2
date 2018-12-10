@@ -1,6 +1,7 @@
 package com.example.domis.assignment2;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -17,6 +18,8 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
@@ -30,14 +33,21 @@ public class GameActivity extends AppCompatActivity {
     private Random rnd;
     private RelativeLayout rl;
     private boolean play;
+    private DBController db;
+    private GameResult gameResult;
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        Intent in = getIntent();
+        userName = in.getStringExtra("User");
+
         rl = findViewById(R.id.relativeLayout);
 
+        db = DBController.getInstance();
         rnd = new Random();
 
         scoreText = findViewById(R.id.scoreText);
@@ -89,6 +99,7 @@ public class GameActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    gameResult = new GameResult(userName, Calendar.getInstance().getTime(), score);
                     timerHandler.removeCallbacks(timerRunnable);
                     showLossPopup();
                 }
@@ -116,32 +127,26 @@ public class GameActivity extends AppCompatActivity {
 
     private void showLossPopup() {
         final AlertDialog ad = new AlertDialog.Builder(GameActivity.this).create();
-        ad.setMessage("You lost, score: " + score);
-        ad.setButton(DialogInterface.BUTTON_NEGATIVE, "No",
+        ad.setMessage("Game Over, Score: " + score);
+        ad.setButton(DialogInterface.BUTTON_NEGATIVE, "Menu",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        writeScoreToFile();
-                        startButton.setVisibility(View.VISIBLE);
-                        startButton.setActivated(true);
+                        db.writeScoreToDB(gameResult);
+                        finish();
                     }
                 });
-        ad.setButton(DialogInterface.BUTTON_POSITIVE, "Yes",
+        ad.setButton(DialogInterface.BUTTON_POSITIVE, "Play Again",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        writeScoreToFile();
-                        play = true;
-                        score = -1;
-                        timerHandler.postDelayed(timerRunnable, 1000);
+                        db.writeScoreToDB(gameResult);
+                        startButton.setVisibility(View.VISIBLE);
+                        startButton.setActivated(true);
                         ad.cancel(); //hide the alert dialog
                     }
                 });
         ad.show();
-    }
-
-    private void writeScoreToFile() {
-
     }
 
     @Override

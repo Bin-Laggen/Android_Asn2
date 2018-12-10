@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "954693258453",
+    "firebase_url": "https://assignment2-689e3.firebaseio.com",
+    "project_id": "assignment2-689e3",
+    "storage_bucket": "assignment2-689e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954693258453:android:02774b3c3f040623",
+        "android_client_info": {
+          "package_name": "com.example.domis.assignment2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954693258453-0t17dlvvl8l2tp09lcu3u4oapqla6dk1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCee7rjn5_2c6zABSgmMpJZRG6veX97S_8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
