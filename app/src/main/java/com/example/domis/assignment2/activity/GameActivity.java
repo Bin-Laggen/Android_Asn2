@@ -77,59 +77,17 @@ public class GameActivity extends AppCompatActivity {
                     Log.e("Height: ", y + "");
                     balloonButton.setX(x);
                     balloonButton.setY(y);
-                    if(score <= 10) {
-                        score++;
-                    }
-                    else if(score > 10 && score <= 20)
-                    {
-                        score += 2;
-                        delay *= 0.9;
-                    }
-                    else if(score > 20 && score <= 30)
-                    {
-                        score += 3;
-                        delay *= 0.8;
-                    }
-                    else if(score > 30 && score <= 50)
-                    {
-                        score += 4;
-                        delay *= 0.75;
-                    }
-                    else if(score > 50 && score <= 70)
-                    {
-                        score += 5;
-                        delay *= 0.7;
-                    }
-                    else if(score > 70 && score <= 100)
-                    {
-                        score += 6;
-                        delay *= 0.67;
-                    }
-                    else if(score > 100 && score <= 130)
-                    {
-                        score += 7;
-                        delay *= 0.63;
-                    }
-                    else if(score > 130 && score <= 170)
-                    {
-                        score += 8;
-                        delay *= 0.6;
-                    }
-                    else if(score > 170 && score <= 220)
-                    {
-                        score += 9;
-                        delay *= 0.58;
-                    }
-                    else if(score > 220 && score <= 300)
-                    {
-                        score += 10;
-                        delay *= 0.56;
-                    }
-                    else
-                    {
-                        score += 11;
-                        delay *= 0.55;
-                    }
+                    if(score <= 10) { score++; }
+                    else if(score > 10 && score <= 20) { score += 2; delay *= 0.9; }
+                    else if(score > 20 && score <= 30) { score += 3; delay *= 0.8; }
+                    else if(score > 30 && score <= 50) { score += 4; delay *= 0.75; }
+                    else if(score > 50 && score <= 70) { score += 5; delay *= 0.7; }
+                    else if(score > 70 && score <= 100) { score += 6; delay *= 0.67; }
+                    else if(score > 100 && score <= 130) { score += 7; delay *= 0.63; }
+                    else if(score > 130 && score <= 170) { score += 8; delay *= 0.6; }
+                    else if(score > 170 && score <= 220) { score += 9; delay *= 0.58; }
+                    else if(score > 220 && score <= 300) { score += 10; delay *= 0.56; }
+                    else { score += 11; delay *= 0.55; }
                     scoreText.setText(getString(R.string.score) + ": " + score);
                     timerHandler.postDelayed(this, delay);
                 }
