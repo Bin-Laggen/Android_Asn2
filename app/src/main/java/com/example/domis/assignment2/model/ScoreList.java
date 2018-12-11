@@ -1,4 +1,4 @@
-package com.example.domis.assignment2;
+package com.example.domis.assignment2.model;
 
 import java.util.ArrayList;
 

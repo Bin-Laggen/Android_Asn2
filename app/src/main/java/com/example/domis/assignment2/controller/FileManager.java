@@ -1,4 +1,6 @@
-package com.example.domis.assignment2;
+package com.example.domis.assignment2.controller;
+
+import com.example.domis.assignment2.model.GameResult;
 
 import java.io.File;
 import java.io.FileNotFoundException;

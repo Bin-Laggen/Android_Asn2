@@ -1,4 +1,4 @@
-package com.example.domis.assignment2;
+package com.example.domis.assignment2.controller;
 
 import android.content.Context;
 import android.util.Log;

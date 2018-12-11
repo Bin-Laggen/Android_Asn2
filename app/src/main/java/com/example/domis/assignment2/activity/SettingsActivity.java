@@ -1,4 +1,4 @@
-package com.example.domis.assignment2;
+package com.example.domis.assignment2.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
-import android.widget.TextView;
+
+import com.example.domis.assignment2.R;
+import com.example.domis.assignment2.model.ScoreList;
 
 public class SettingsActivity extends AppCompatActivity {
 

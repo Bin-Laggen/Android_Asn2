@@ -9,7 +9,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".ScoresActivity">
+    tools:context=".activity.ScoresActivity">
 
     <TextView
         android:id="@+id/welomeText"
@@ -38,7 +38,7 @@
         android:layout_marginBottom="16sp"
         android:text="@string/check" />
 
-    <com.example.domis.assignment2.BarChart
+    <com.example.domis.assignment2.view.BarChart
         android:id="@+id/barChart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
