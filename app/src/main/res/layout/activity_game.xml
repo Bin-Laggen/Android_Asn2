@@ -51,7 +51,7 @@
             android:layout_height="50sp"
             android:contentDescription="Clickable Balloon"
             android:background="@color/bgBrown"
-            app:srcCompat="@drawable/blue_balloon1" />
+            app:srcCompat="@drawable/blue_balloon" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

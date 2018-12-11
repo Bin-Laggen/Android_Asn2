@@ -5,14 +5,14 @@ import java.util.Comparator;
 public class GameResult {
 
     private String userName;
-    private int score;
+    private float score;
 
     public GameResult()
     {
 
     }
 
-    public GameResult(String userName, int score)
+    public GameResult(String userName, float score)
     {
         this.userName = userName;
         this.score = score;
@@ -22,11 +22,11 @@ public class GameResult {
         return userName;
     }
 
-    public int getScore() {
+    public float getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(float score) {
         this.score = score;
     }
 

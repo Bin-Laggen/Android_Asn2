@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bgBrown"
@@ -55,7 +56,7 @@
             android:layout_height="200sp"
             android:layout_marginBottom="32dp"
             android:contentDescription="@string/balloons"
-            app:srcCompat="@drawable/balloons"/>
+            app:srcCompat="@drawable/balloons" />
 
         <TextView
             android:id="@+id/swipeRightText"
@@ -63,8 +64,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:text="@string/swipeRight"
-            android:textStyle="bold|italic"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
 
         <TextView
             android:id="@+id/swipeLeftText"
@@ -74,17 +75,6 @@
             android:textSize="20sp"
             android:textStyle="bold|italic" />
 
-        <Button
-            android:id="@+id/rightButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Swipe Right" />
-
-        <Button
-            android:id="@+id/leftButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Swipe Left" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

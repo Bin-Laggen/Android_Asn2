@@ -4,22 +4,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity {
@@ -28,13 +24,14 @@ public class GameActivity extends AppCompatActivity {
     private Button startButton;
     private Handler timerHandler;
     private Runnable timerRunnable;
-    private int score;
+    private float score;
     private ImageButton balloonButton;
     private Random rnd;
     private RelativeLayout rl;
     private boolean play;
-    private DBController db;
-    private FileManager fm;
+    //private DBController db;
+    //private FileManager fm;
+    private ScoreList sl;
     private GameResult gameResult;
     private String userName;
 
@@ -48,14 +45,18 @@ public class GameActivity extends AppCompatActivity {
 
         rl = findViewById(R.id.relativeLayout);
 
-        db = DBController.getInstance();
-        fm = FileManager.getInstance();
+        //db = DBController.getInstance();
+        //fm = FileManager.getInstance();
+        sl = ScoreList.getInstance();
         rnd = new Random();
+
+        balloonButton = findViewById(R.id.balloonButton);
 
         scoreText = findViewById(R.id.scoreText);
         startButton = findViewById(R.id.startButton);
 
-        balloonButton = findViewById(R.id.balloonButton);
+        setBalloon();
+        setDiff();
 
         timerHandler = new Handler();
         timerRunnable = new Runnable() {
@@ -131,8 +132,10 @@ public class GameActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    score *= (1 + (0.2 * sl.getDifficulty()));
                     gameResult = new GameResult(userName, score);
                     timerHandler.removeCallbacks(timerRunnable);
+                    sl.add(gameResult);
                     showLossPopup();
                 }
             }
@@ -164,8 +167,8 @@ public class GameActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        db.writeScoreToDB(gameResult);
-                        db.getScoresFromDB();
+                        //db.writeScoreToDB(gameResult);
+                        //db.getScoresFromDB();
                         //fm.writeToFile(gameResult);
                         finish();
                     }
@@ -174,21 +177,71 @@ public class GameActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        db.writeScoreToDB(gameResult);
-                        db.getScoresFromDB();
+                        //db.writeScoreToDB(gameResult);
+                        //db.getScoresFromDB();
                         //fm.writeToFile(gameResult);
                         startButton.setVisibility(View.VISIBLE);
                         startButton.setActivated(true);
                         ad.cancel(); //hide the alert dialog
                     }
                 });
+        ad.setCancelable(false);
         ad.show();
     }
 
+    private void setBalloon() {
+        if(sl.getColor().equals("GREEN"))
+        {
+            balloonButton.setImageResource(R.drawable.green_balloon);
+        }
+        else if(sl.getColor().equals("RED"))
+        {
+            balloonButton.setImageResource(R.drawable.red_balloon);
+        }
+        else
+        {
+            balloonButton.setImageResource(R.drawable.blue_balloon);
+        }
+    }
+
+    private void setDiff() {
+        Log.e("Diff: ", sl.getDifficulty() + "");
+        ViewGroup.LayoutParams balloonParams = balloonButton.getLayoutParams();
+        switch (sl.getDifficulty())
+        {
+            case 0:
+                balloonParams.width *= 1.5;
+                balloonParams.height *= 1.5;
+                break;
+            case 1:
+                balloonParams.width *= 1;
+                balloonParams.height *= 1;
+                break;
+            case 2:
+                balloonParams.width *= 0.75;
+                balloonParams.height *= 0.75;
+                break;
+            default:
+                balloonParams.width *= 1.5;
+                balloonParams.height *= 1.5;
+        }
+        balloonButton.setLayoutParams(balloonParams);
+        balloonButton.setScaleType(ImageView.ScaleType.FIT_XY);
+    }
+
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onPause()
+    {
         timerHandler.removeCallbacks(timerRunnable);
+        super.onPause();
+    }
+
+    @Override
+    public void onResume()
+    {
+        setBalloon();
+        setDiff();
+        super.onResume();
     }
 
 }

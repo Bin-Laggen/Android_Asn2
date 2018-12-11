@@ -53,29 +53,30 @@ public class DBController {
 
     private void getScoreCount()
     {
-        dbRef.child("SCORES").addListenerForSingleValueEvent(new ValueEventListener() {
+        readScoreCount(new MyCallback() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                size = dataSnapshot.getChildrenCount();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onCallback(Object value) {
+                size = (long) value;
+                //Log.e("Res: ", value.toString());
             }
         });
+        Log.e("Size: ", size + "");
     }
 
     public void getScoresFromDB()
     {
+        getScoreCount();
         Log.e("Calling ", "DB");
         scores = new ArrayList<>();
         for(int i = 0; i < size; i++)
         {
+            /**
             dbRef.child("SCORES").child(size + "").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    scores.add(dataSnapshot.getValue(GameResult.class));
+                    GameResult res = dataSnapshot.getValue(GameResult.class);
+                    Log.e("Res: ", res.toString());
+                    scores.add(res);
                 }
 
                 @Override
@@ -83,23 +84,24 @@ public class DBController {
 
                 }
             });
-        }
+             */
+
          /**
         scores = new ArrayList<GameResult>();
-        readData(new MyCallback() {
-            @Override
-            public void onCallback(GameResult value) {
-                scores.add(value);
+          */
+            readGameResult(new MyCallback() {
+                @Override
+                public void onCallback(Object value) {
+                    scores.add((GameResult) value);
                 //Log.e("Res: ", value.toString());
-            }
-        });
-         */
+                }
+            });
+        }
         Log.e("Returned from ", "DB");
     }
 
     public ArrayList<GameResult> getScores()
     {
-        //getScoresFromDB();
         for(GameResult g : scores)
         {
             Log.e("GR: ", g.toString());
@@ -107,17 +109,21 @@ public class DBController {
         return scores;
     }
 
-    /**
-    private void readData(final MyCallback myCallback) {
+
+    private void readGameResult(final MyCallback myCallback) {
         final DatabaseReference scoresRef = dbRef.child("SCORES");
         scoresRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                /**
                 for(DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     GameResult res = ds.getValue(GameResult.class);
                     myCallback.onCallback(res);
                 }
+                 */
+                GameResult res = dataSnapshot.getValue(GameResult.class);
+                myCallback.onCallback(res);
             }
 
             @Override
@@ -126,5 +132,29 @@ public class DBController {
             }
         });
     }
-     */
+
+    private void readScoreCount(final MyCallback myCallback) {
+        final DatabaseReference scoresRef = dbRef.child("SCORES");
+        scoresRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                /**
+                 for(DataSnapshot ds : dataSnapshot.getChildren())
+                 {
+                 GameResult res = ds.getValue(GameResult.class);
+                 myCallback.onCallback(res);
+                 }
+                 */
+                //GameResult res = dataSnapshot.getValue(GameResult.class);
+                long count = dataSnapshot.getChildrenCount();
+                Log.e("Count", count + "");
+                myCallback.onCallback(count);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }

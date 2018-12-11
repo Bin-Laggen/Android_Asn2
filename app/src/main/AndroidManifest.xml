@@ -18,6 +18,9 @@
         </activity>
         <activity android:name=".ScoresActivity" />
         <activity android:name=".GameActivity" />
+        <activity android:name=".SettingsActivity"></activity>
+
     </application>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
 </manifest>

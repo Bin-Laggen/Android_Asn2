@@ -4,9 +4,14 @@
     <string name="swipeRight">Swipe right to play</string>
     <string name="swipeLeft">Swipe left to view high scores</string>
     <string name="balloons">Balloons</string>
-
+    <string name="notification_text">Call: 021 0000001</string>
+    <string name="notification_title">Call a friend</string>
     <string name="score">Score</string>
     <string name="start">Start Game</string>
     <string name="nameLabel">User Name:</string>
-    <string name="refresh">Refresh</string>
+    <string name="settings">Settings</string>
+    <string name="exit">Exit</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="color">Balloon Colour</string>
+    <string name="check">Show Graph</string>
 </resources>
